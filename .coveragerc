@@ -1,0 +1,5 @@
+[run]
+include = spa_todo_list/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
