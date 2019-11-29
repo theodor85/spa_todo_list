@@ -69,12 +69,12 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",
-    'corsheaders'
+    'corsheaders',
 ]
 
 LOCAL_APPS = [
     "spa_todo_list.users.apps.UsersConfig",
-    'main',
+    'spa_todo_list.main.apps.MainConfig',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -267,5 +267,5 @@ SOCIALACCOUNT_ADAPTER = "spa_todo_list.users.adapters.SocialAccountAdapter"
 
 # cors headers
 # разрешем запросы только из docker-контейнера vue
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ['vue']
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = ['http://vue']

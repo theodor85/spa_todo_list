@@ -7,7 +7,7 @@ import {router} from './routes.js';
 import VueResource from 'vue-resource';
 
 Vue.use(VueResource);
-Vue.http.options.root = 'http://django:8000/'
+Vue.http.options.root = 'http://0.0.0.0:8000/'
 
 new Vue({
   el: '#app',

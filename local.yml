@@ -18,6 +18,8 @@ services:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
     command: /start
+    ports:
+      - "8000:8000"
 
   postgres:
     build:
@@ -37,7 +39,5 @@ services:
     volumes:
       - ./vue:/app
     network_mode: host
-    ports:
-      - "8080:8080"
     depends_on:
       - django

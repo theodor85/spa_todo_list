@@ -5,7 +5,10 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from spa_todo_list.main.views import tasks_view
+
 urlpatterns = [
+    path('tasks/', tasks_view, name='tasks'),
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
