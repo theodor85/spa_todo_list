@@ -38,6 +38,6 @@ services:
       dockerfile: ./compose/local/vue/Dockerfile
     volumes:
       - ./vue:/app
-    network_mode: host
     depends_on:
       - django
+    network_mode: "host"
