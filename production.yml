@@ -36,7 +36,7 @@ services:
       dockerfile: ./compose/production/traefik/Dockerfile
     image: spa_todo_list_production_traefik
     depends_on:
-      - django
+      - nginx
     volumes:
       - production_traefik:/etc/traefik/acme
     ports:
@@ -53,3 +53,10 @@ services:
       - ./.envs/.production/.django
     volumes:
       - production_postgres_data_backups:/backups
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/production/nginx/Dockerfile
+    depends_on:
+      - django
