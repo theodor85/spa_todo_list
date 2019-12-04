@@ -31,17 +31,19 @@ services:
       - ./.envs/.production/.postgres
 
   traefik:
-    build:
-      context: .
-      dockerfile: ./compose/production/traefik/Dockerfile
-    image: spa_todo_list_production_traefik
-    depends_on:
-      - nginx
-    volumes:
-      - production_traefik:/etc/traefik/acme
+    image: "traefik:v2.0"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
     ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   redis:
     image: redis:5.0
@@ -60,3 +62,7 @@ services:
       dockerfile: ./compose/production/nginx/Dockerfile
     depends_on:
       - django
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`v133386.hosted-by-vdsina.ru`)"
+      - "traefik.http.routers.nginx.entrypoints=web"
